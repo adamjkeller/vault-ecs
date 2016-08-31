@@ -10,7 +10,6 @@ class GetVaults(object):
 
     def return_ecs_vaults(self):
         vaults = [x['Instances'][0]['PrivateIpAddress'] for x in self.client.describe_instances(Filters=[{'Name':'tag:Name', 'Values':['ecs-services']}])['Reservations']]
-        print vaults
         return vaults
 
 
