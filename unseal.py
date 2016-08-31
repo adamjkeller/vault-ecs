@@ -11,7 +11,7 @@ class UnsealVault(object):
         self.args = GetArgs().get_args()
 
     def client(self, host):
-        return hvac.Client(url="https://{0}:8200".format(host), token=self.args.token, verify=False)
+        return Client(url="https://{0}:8200".format(host), token=self.args.token, verify=False)
 
     def key_list(self):
         return [self.args.key1, self.args.key2, self.args.key3]
@@ -24,6 +24,7 @@ class UnsealVault(object):
     def unseal_vault(self):
         'For every vault that is sealed, we will unseal with all keys at once (3)'
         sealed_vaults = self.check_seal()
+        print sealed_vaults
         if sealed_vaults:
             for vault in sealed_vaults:
                 self.client(vault).unseal_multi(self.key_list())
