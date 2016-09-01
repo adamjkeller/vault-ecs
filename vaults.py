@@ -10,8 +10,7 @@ class GetVaults(object):
         self.client = botoclient('ec2', region_name=self.region)
 
     def return_ecs_vaults(self):
-        vaults = [x['Instances'][0]['PrivateIpAddress'] for x in self.client.describe_instances(Filters=[{'Name':'tag:Name', 'Values':[self.tag]}])['Reservations']]
-        return vaults
+        return [x['Instances'][0]['PrivateIpAddress'] for x in self.client.describe_instances(Filters=[{'Name':'tag:Name', 'Values':[self.tag]}])['Reservations']]
 
 
 if __name__ == '__main__':

@@ -1,0 +1,13 @@
+{
+  "schedule": "R/2016-09-25T17:22:00Z/PT5M",
+  "name": "Vault Seal Check",
+  "container": {
+    "type": "DOCKER",
+    "image": "adam9098/vault-seal-checker:latest",
+    "network": "BRIDGE",
+  },
+  "cpus": "0.5",
+  "mem": "512",
+  "uris": [],
+  "command": "python /opt/vault-unsealer/unseal.py"
+}
